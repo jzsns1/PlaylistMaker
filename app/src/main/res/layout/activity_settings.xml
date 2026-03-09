@@ -56,12 +56,13 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_normal" />
 
-            <ImageView
-                android:layout_width="@dimen/icon_size_toggle"
-                android:layout_height="@dimen/icon_toggle_height"
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/themeSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_end_icon"
-                android:contentDescription="@string/toggle_description"
-                android:src="@drawable/control" />
+                android:src="@drawable/control"
+                android:checked="false" />
 
         </LinearLayout>
     </FrameLayout>

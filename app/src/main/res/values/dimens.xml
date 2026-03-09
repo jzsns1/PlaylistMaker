@@ -19,7 +19,7 @@
     <dimen name="margin_top_title">1dp</dimen>
     <dimen name="margin_top_container">32dp</dimen>
     <dimen name="margin_bottom_card">12dp</dimen>
-    <dimen name="card_corner_radius">25dp</dimen>
+    <dimen name="button_corner_radius">25dp</dimen>
     <dimen name="card_elevation">2dp</dimen>
     <dimen name="icon_size">24dp</dimen>
 </resources>

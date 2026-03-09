@@ -16,8 +16,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        val cardSearch = findViewById<androidx.cardview.widget.CardView>(R.id.cardSearch)
-        cardSearch.setOnClickListener {
+        val btnSearch = findViewById<Button>(R.id.btnSearch)
+        btnSearch.setOnClickListener {
             val displayIntent = Intent(this, SearchActivity::class.java)
             startActivity(displayIntent)
         }
@@ -25,8 +25,8 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        val cardMedia = findViewById<androidx.cardview.widget.CardView>(R.id.cardMedia)
-        cardMedia.setOnClickListener {
+        val btnMedia = findViewById<Button>(R.id.btnMedia)
+        btnMedia.setOnClickListener {
             val displayIntent = Intent(this, MediaActivity::class.java)
             startActivity(displayIntent)
         }
@@ -34,8 +34,8 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        val cardSett = findViewById<androidx.cardview.widget.CardView>(R.id.cardSett)
-        cardSett.setOnClickListener {
+        val btnSett = findViewById<Button>(R.id.btnSettings)
+        btnSett.setOnClickListener {
             val displayIntent = Intent(this, SettingsActivity::class.java)
             startActivity(displayIntent)
         }
