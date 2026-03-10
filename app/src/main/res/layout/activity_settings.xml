@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/sett"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/background_settings"
     android:orientation="vertical"
-    android:id="@+id/sett"
     android:padding="@dimen/padding_default">
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,24 +21,19 @@
             android:layout_height="@dimen/icon_size_small"
             android:layout_marginEnd="@dimen/margin_end_arrow"
             android:contentDescription="@string/back_description"
-            android:src="@drawable/back" />
+            android:src="@drawable/back"
+            app:tint="@color/arrow_back"/>
 
         <TextView
+            style="@style/TitleTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/settings_title"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size_title"
-            android:textStyle="bold" />
+            android:textColor="@color/text_primary"/>
 
     </LinearLayout>
 
-
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/item_height"
-        android:layout_marginBottom="@dimen/margin_bottom_item">
+    <FrameLayout style="@style/SettingsItem">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -49,29 +44,20 @@
             android:paddingEnd="@dimen/padding_item">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                style="@style/SettingsItemText"
                 android:text="@string/dark_theme"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_normal" />
+                android:textColor="@color/text_primary" />
 
             <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/themeSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_end_icon"
-                android:src="@drawable/control"
-                android:checked="false" />
+                android:layout_marginEnd="@dimen/margin_end_icon" />
 
         </LinearLayout>
     </FrameLayout>
 
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/item_height"
-        android:layout_marginBottom="@dimen/margin_bottom_item">
+    <FrameLayout style="@style/SettingsItem">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -82,28 +68,20 @@
             android:paddingEnd="@dimen/padding_item">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                style="@style/SettingsItemText"
                 android:text="@string/share_app"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_normal" />
+                android:textColor="@color/text_primary" />
 
             <ImageView
-                android:layout_width="@dimen/icon_size_medium"
-                android:layout_height="@dimen/icon_size_medium"
-                android:layout_marginEnd="@dimen/margin_end_icon"
+                style="@style/SettingsItemIcon"
                 android:contentDescription="@string/share_description"
-                android:src="@drawable/share" />
+                android:src="@drawable/share"
+                app:tint="@color/icon_tint_night"/>
 
         </LinearLayout>
     </FrameLayout>
 
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/item_height"
-        android:layout_marginBottom="@dimen/margin_bottom_item">
+    <FrameLayout style="@style/SettingsItem">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -114,27 +92,20 @@
             android:paddingEnd="@dimen/padding_item">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                style="@style/SettingsItemText"
                 android:text="@string/support"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_normal" />
+                android:textColor="@color/text_primary" />
 
             <ImageView
-                android:layout_width="@dimen/icon_size_medium"
-                android:layout_height="@dimen/icon_size_medium"
-                android:layout_marginEnd="@dimen/margin_end_icon"
+                style="@style/SettingsItemIcon"
                 android:contentDescription="@string/support_description"
-                android:src="@drawable/support" />
+                android:src="@drawable/support"
+                app:tint="@color/icon_tint_night"/>
 
         </LinearLayout>
     </FrameLayout>
 
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/item_height">
+    <FrameLayout style="@style/SettingsItem">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -145,23 +116,18 @@
             android:paddingEnd="@dimen/padding_item">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                style="@style/SettingsItemText"
                 android:text="@string/user_agreement"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_normal" />
+                android:textColor="@color/text_primary" />
 
             <ImageView
-                android:layout_width="@dimen/icon_size_medium"
-                android:layout_height="@dimen/icon_size_medium"
-                android:layout_marginEnd="@dimen/margin_end_icon"
+                style="@style/SettingsItemIcon"
                 android:contentDescription="@string/forward_description"
-                android:src="@drawable/forward" />
+                android:src="@drawable/forward"
+                app:tint="@color/icon_tint_night"/>
 
         </LinearLayout>
     </FrameLayout>
-
 
     <View
         android:layout_width="match_parent"
