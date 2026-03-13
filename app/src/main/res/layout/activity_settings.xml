@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/sett"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -48,11 +49,12 @@
                 android:text="@string/dark_theme"
                 android:textColor="@color/text_primary" />
 
-            <com.google.android.material.switchmaterial.SwitchMaterial
+            <Switch
                 android:id="@+id/themeSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_end_icon" />
+                android:layout_marginEnd="@dimen/margin_end_icon"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
 
         </LinearLayout>
     </FrameLayout>
@@ -73,6 +75,7 @@
                 android:textColor="@color/text_primary" />
 
             <ImageView
+                android:id="@+id/shareButton"
                 style="@style/SettingsItemIcon"
                 android:contentDescription="@string/share_description"
                 android:src="@drawable/share"
@@ -97,6 +100,7 @@
                 android:textColor="@color/text_primary" />
 
             <ImageView
+                android:id="@+id/supportButton"
                 style="@style/SettingsItemIcon"
                 android:contentDescription="@string/support_description"
                 android:src="@drawable/support"
@@ -121,6 +125,7 @@
                 android:textColor="@color/text_primary" />
 
             <ImageView
+                android:id="@+id/userAgreeButtonForward"
                 style="@style/SettingsItemIcon"
                 android:contentDescription="@string/forward_description"
                 android:src="@drawable/forward"
