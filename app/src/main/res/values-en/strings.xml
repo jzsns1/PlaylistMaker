@@ -14,4 +14,6 @@
     <string name="search">Поиск</string>
     <string name="media_library">Медиатека</string>
     <string name="settings">Настройки</string>
+    <string name="support_email_subject">Сообщение разработчикам и разработчицам приложения Playlist Maker</string>
+    <string name="support_email_body">Спасибо разработчикам и разработчицам за крутое приложение!</string>
 </resources>
