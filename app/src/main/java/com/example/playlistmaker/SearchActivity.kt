@@ -14,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.internal.ViewUtils.hideKeyboard
 
 class SearchActivity : AppCompatActivity() {
+    private var searchText: String = ""
     @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +25,7 @@ class SearchActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
         val backButton = findViewById<ImageView>(R.id.backButton)
         val clearButton = findViewById<ImageView>(R.id.clearButton)
         val searchEditText = findViewById<EditText>(R.id.searchEditText)
@@ -43,6 +45,7 @@ class SearchActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                searchText = s?.toString() ?: ""
                 clearButton.visibility = if (s.isNullOrEmpty()) View.GONE else View.VISIBLE
             }
 
@@ -50,5 +53,20 @@ class SearchActivity : AppCompatActivity() {
 
             }
         })
+    }
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        val searchEditText = findViewById<EditText>(R.id.searchEditText)
+        outState.putString("SEARCH_TEXT", searchEditText.text.toString())
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        val savedText = savedInstanceState.getString("SEARCH_TEXT", "")
+        if (savedText.isNotEmpty()) {
+            val searchEditText = findViewById<EditText>(R.id.searchEditText)
+            searchEditText.setText(savedText)
+            searchEditText.setSelection(savedText.length)
+        }
     }
 }
