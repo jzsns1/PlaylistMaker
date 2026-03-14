@@ -55,7 +55,7 @@ class SettingsActivity : AppCompatActivity() {
     private fun sendEmailToSupport() {
         val emailIntent = Intent(Intent.ACTION_SEND).apply {
             type = "message/rfc822"
-            putExtra(Intent.EXTRA_EMAIL, arrayOf("pfpro456@mail.ru"))
+            putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(R.string.support_email)))
             putExtra(Intent.EXTRA_SUBJECT, getString(R.string.support_email_subject))
             putExtra(Intent.EXTRA_TEXT, getString(R.string.support_email_body))
         }

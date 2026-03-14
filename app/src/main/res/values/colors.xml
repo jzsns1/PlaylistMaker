@@ -16,4 +16,7 @@
 
     <color name="search_background">#E6E8EB</color>
     <color name="hint_color">#AEAFB4</color>
+    <color name="icon_search_color">#AEAFB4</color>
+    <color name="text_search_color">#AEAFB4</color>
+    <color name="searching_text">#FF000000</color>
 </resources>
