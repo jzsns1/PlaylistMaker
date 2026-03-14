@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background_blue">#1A1B22</color>
+    <color name="background_settings">#1A1B22</color>
+    <color name="text_primary">#FFFFFFFF</color>
+    <color name="text_secondary">#FFFFFFFF</color>
+    <color name="icon_tint_night">#FFFFFFFF</color>
+    <color name="arrow_back">#FFFFFFFF</color>
+</resources>

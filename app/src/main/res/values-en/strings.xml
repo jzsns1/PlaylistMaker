@@ -14,5 +14,4 @@
     <string name="search">Поиск</string>
     <string name="media_library">Медиатека</string>
     <string name="settings">Настройки</string>
-    <string name="app_name" translatable="false">Playlist Maker</string>
 </resources>
