@@ -10,7 +10,7 @@
     <dimen name="margin_bottom_title">24dp</dimen>
     <dimen name="margin_bottom_item">4dp</dimen>
     <dimen name="margin_end_icon">12dp</dimen>
-    <dimen name="margin_end_arrow">28dp</dimen>
+    <dimen name="margin_end_arrow">23dp</dimen>
     <dimen name="padding_default">16dp</dimen>
     <dimen name="padding_item">10dp</dimen>
     <dimen name="card_height">250dp</dimen>

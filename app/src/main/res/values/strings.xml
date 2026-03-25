@@ -15,4 +15,9 @@
     <string name="media_library">Медиатека</string>
     <string name="settings">Настройки</string>
     <string name="app_name" translatable="false">Playlist Maker</string>
+    <string name="support_email_subject">Сообщение разработчикам и разработчицам приложения Playlist Maker</string>
+    <string name="support_email_body">Спасибо разработчикам и разработчицам за крутое приложение!</string>
+    <string name="practicum_offer_url" translatable="false">https://yandex.ru/legal/practicum_offer/ru/</string>
+    <string name="share_message" translatable="false">https://practicum.yandex.ru/android-developer/</string>
+    <string name="support_email" translatable="false">pfpro456@mail.ru</string>
 </resources>
