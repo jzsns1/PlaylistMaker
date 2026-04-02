@@ -11,6 +11,7 @@
     <string name="support_description">Поддержка</string>
     <string name="forward_description">Вперед</string>
     <string name="app_title">Playlist maker</string>
+    <string name="track_artwork" translatable="false">Обложка трека</string>
     <string name="search">Поиск</string>
     <string name="media_library">Медиатека</string>
     <string name="settings">Настройки</string>
