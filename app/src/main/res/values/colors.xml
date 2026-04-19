@@ -19,4 +19,5 @@
     <color name="icon_search_color">#AEAFB4</color>
     <color name="text_search_color">#AEAFB4</color>
     <color name="searching_text">#FF000000</color>
+    <color name="refreshing_butt">#FFFFFFFF</color>
 </resources>
