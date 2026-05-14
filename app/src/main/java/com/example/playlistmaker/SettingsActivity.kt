@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.net.toUri
+import androidx.core.content.edit
+import com.google.android.material.switchmaterial.SwitchMaterial
 
 class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,7 +21,15 @@ class SettingsActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
 
+        val themeSwitcher = findViewById<SwitchMaterial>(R.id.themeSwitch)
+        themeSwitcher.isChecked = (applicationContext as App).darkTheme
+        themeSwitcher.setOnCheckedChangeListener { _, checked ->
+            (applicationContext as App).switchTheme(checked)
+            getSharedPreferences(PLAYLIST_MAKER_PREFERENCES, MODE_PRIVATE).edit {
+                putBoolean(DARK_THEME_KEY, checked)
+            }
         }
 
         val backButton = findViewById<ImageView>(R.id.backButton)
@@ -42,12 +52,12 @@ class SettingsActivity : AppCompatActivity() {
             openAgreement()
         }
     }
+
     private fun shareApp() {
         val shareIntent = Intent().apply {
             action = Intent.ACTION_SEND
             type = "text/plain"
             putExtra(Intent.EXTRA_TEXT, getShareMessage())
-
         }
         startActivity(Intent.createChooser(shareIntent, "Поделиться через"))
     }
@@ -69,7 +79,8 @@ class SettingsActivity : AppCompatActivity() {
         val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         startActivity(browserIntent)
     }
-    private fun getShareMessage(): String{
+
+    private fun getShareMessage(): String {
         return getString(R.string.share_message)
     }
 }
