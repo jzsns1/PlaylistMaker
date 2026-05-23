@@ -25,4 +25,6 @@
     <string name="network_error_title" translatable="false">Проблемы со связью</string>
     <string name="network_error_message" translatable="false">Загрузка не удалась. Проверьте подключение к интернету</string>
     <string name="refresh" translatable="false">Обновить</string>
+    <string name="you_searched">Вы искали</string>
+    <string name="clear_history">Очистить историю</string>
 </resources>

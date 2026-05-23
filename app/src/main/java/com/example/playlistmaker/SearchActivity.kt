@@ -16,6 +16,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.playlistmaker.data.ItunesApi
@@ -37,6 +38,11 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var placeholderMessage: TextView
     private lateinit var refreshButton: Button
     private lateinit var searchEditText: EditText
+    private lateinit var placeholderTitle: TextView
+
+    private lateinit var historyLayout: NestedScrollView
+    private lateinit var historyAdapter: TrackAdapter
+    private lateinit var searchHistory: SearchHistory
 
     private val retrofit = Retrofit.Builder()
         .baseUrl("https://itunes.apple.com")
@@ -44,13 +50,13 @@ class SearchActivity : AppCompatActivity() {
         .build()
 
     private val itunesApi = retrofit.create(ItunesApi::class.java)
-    private lateinit var placeholderTitle: TextView
 
     @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_search)
+
         placeholderTitle = findViewById(R.id.placeholderTitle)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.search)) { v, insets ->
@@ -67,10 +73,34 @@ class SearchActivity : AppCompatActivity() {
         placeholderImage = findViewById(R.id.placeholderImage)
         placeholderMessage = findViewById(R.id.placeholderMessage)
         refreshButton = findViewById(R.id.refreshButton)
+        historyLayout = findViewById(R.id.historyLayout)
 
+        val sharedPrefs = getSharedPreferences(PLAYLIST_MAKER_PREFERENCES, MODE_PRIVATE)
+        searchHistory = SearchHistory(sharedPrefs)
+
+        adapter = TrackAdapter { track ->
+            searchHistory.addTrack(track)
+            refreshHistoryAdapter()
+        }
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = TrackAdapter()
         recyclerView.adapter = adapter
+
+        historyAdapter = TrackAdapter { track ->
+            searchHistory.addTrack(track)
+            refreshHistoryAdapter()
+        }
+        val rvHistory = findViewById<RecyclerView>(R.id.rvHistory)
+        rvHistory.layoutManager = LinearLayoutManager(this)
+        rvHistory.adapter = historyAdapter
+        rvHistory.isNestedScrollingEnabled = false
+        refreshHistoryAdapter()
+
+        val clearHistoryButton = findViewById<Button>(R.id.clearHistoryButton)
+        clearHistoryButton.setOnClickListener {
+            searchHistory.clearHistory()
+            refreshHistoryAdapter()
+            historyLayout.visibility = View.GONE
+        }
 
         backButton.setOnClickListener { finish() }
 
@@ -85,11 +115,16 @@ class SearchActivity : AppCompatActivity() {
             placeholderLayout.visibility = View.GONE
         }
 
+        searchEditText.setOnFocusChangeListener { _, hasFocus ->
+            updateHistoryVisibility(hasFocus)
+        }
+
         searchEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 searchText = s?.toString() ?: ""
                 clearButton.visibility = if (searchText.isEmpty()) View.GONE else View.VISIBLE
+                updateHistoryVisibility(searchEditText.hasFocus())
             }
             override fun afterTextChanged(s: Editable?) {}
         })
@@ -108,7 +143,22 @@ class SearchActivity : AppCompatActivity() {
         }
     }
 
+    private fun updateHistoryVisibility(hasFocus: Boolean) {
+        val shouldShow = hasFocus
+            && searchEditText.text.isEmpty()
+            && searchHistory.getHistory().isNotEmpty()
+        historyLayout.visibility = if (shouldShow) View.VISIBLE else View.GONE
+    }
+
+    private fun refreshHistoryAdapter() {
+        val history = searchHistory.getHistory()
+        historyAdapter.tracks.clear()
+        historyAdapter.tracks.addAll(history)
+        historyAdapter.notifyDataSetChanged()
+    }
+
     private fun search() {
+        historyLayout.visibility = View.GONE
         itunesApi.search(searchText).enqueue(object : Callback<ItunesResponse> {
             override fun onResponse(call: Call<ItunesResponse>, response: Response<ItunesResponse>) {
                 if (response.code() == 200) {
@@ -157,10 +207,8 @@ class SearchActivity : AppCompatActivity() {
             }
         }
     }
-    private enum class PlaceholderType {
-        NOTHING_FOUND,
-        NETWORK_ERROR
-    }
+
+    private enum class PlaceholderType { NOTHING_FOUND, NETWORK_ERROR }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
