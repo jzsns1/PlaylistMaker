@@ -16,6 +16,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.playlistmaker.data.ItunesApi
@@ -39,7 +40,7 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var searchEditText: EditText
     private lateinit var placeholderTitle: TextView
 
-    private lateinit var historyLayout: LinearLayout
+    private lateinit var historyLayout: NestedScrollView
     private lateinit var historyAdapter: TrackAdapter
     private lateinit var searchHistory: SearchHistory
 
@@ -91,6 +92,7 @@ class SearchActivity : AppCompatActivity() {
         val rvHistory = findViewById<RecyclerView>(R.id.rvHistory)
         rvHistory.layoutManager = LinearLayoutManager(this)
         rvHistory.adapter = historyAdapter
+        rvHistory.isNestedScrollingEnabled = false
         refreshHistoryAdapter()
 
         val clearHistoryButton = findViewById<Button>(R.id.clearHistoryButton)
